@@ -15,6 +15,7 @@ def index():
         event_type = request.form.get('event_type', '').strip()
         location = request.form.get('location', '').strip()
         message = request.form.get('message', '').strip()
+        package = request.form.get('package', '').strip()
 
         errors = []
         if not name:
@@ -46,6 +47,7 @@ def index():
             event_type=event_type,
             location=location,
             message=message,
+            package=package,
         )
         db.session.add(booking)
         db.session.commit()

@@ -12,5 +12,6 @@ class Booking(db.Model):
     event_type = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(200), nullable=False)
     message = db.Column(db.Text, default='')
+    package = db.Column(db.String(500), default='')
     status = db.Column(db.String(20), default='Pending')
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
