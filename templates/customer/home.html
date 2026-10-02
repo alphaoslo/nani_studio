@@ -1,0 +1,90 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Nani Digitals — Capturing Your Special Moments{% endblock %}
+{% block content %}
+<!-- Hero -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="{{ url_for('static', filename='images/hero/poster1.png') }}" class="img-fluid rounded shadow" alt="Nani Digitals Poster">
+            </div>
+            <div class="col-md-6 text-center text-md-start">
+                <h1 class="display-3 fw-bold text-dark">NANI DIGITALS</h1>
+                <p class="lead fs-4 mb-4" style="color: #c9a227;">"Capturing Your Special Moments"</p>
+                <div class="d-flex gap-3 justify-content-center justify-content-md-start flex-wrap">
+                    <a href="{{ url_for('booking.index') }}" class="btn btn-warning btn-lg px-4">Book Now</a>
+                    <a href="{{ url_for('portfolio.index') }}" class="btn btn-outline-dark btn-lg px-4">View Portfolio</a>
+                    <a href="tel:9063939145" class="btn btn-outline-dark btn-lg px-4">Call Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Introduction -->
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Welcome to Nani Digitals</h2>
+        <p class="lead text-muted mx-auto" style="max-width: 700px;">
+            Professional photography, videography, drone shoots, and editing services based in Mydukur. We turn your special moments into timeless memories.
+        </p>
+    </div>
+</section>
+
+<!-- Services Overview -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Our Services</h2>
+        <div class="row g-4">
+            {% for icon, title, desc in [('bi-camera', 'Photography', 'Weddings, events, portraits & pre-wedding shoots'), ('bi-camera-video', 'Videography', 'Cinematic videos, wedding films & event coverage'), ('bi-airplane', 'Drone Shoot', 'Aerial photography & videography'), ('bi-scissors', 'Photo & Video Editing', 'Retouching, color grading & cinematic editing')] %}
+            <div class="col-md-3 text-center">
+                <div class="card border-0 shadow-sm p-4 h-100">
+                    <i class="bi {{ icon }} text-warning fs-1 mb-3"></i>
+                    <h5 class="fw-bold">{{ title }}</h5>
+                    <p class="text-muted small">{{ desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Portfolio -->
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5">Featured Work</h2>
+        <p class="text-muted">Explore our portfolio to see our latest work.</p>
+        <a href="{{ url_for('portfolio.index') }}" class="btn btn-warning px-4">View Full Portfolio</a>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Why Choose Nani Digitals</h2>
+        <div class="row g-4 text-center">
+            <div class="col-md-3"><i class="bi bi-award fs-1 text-warning"></i><h5 class="mt-2">Quality Service</h5><p class="text-muted small">Premium quality in every shot.</p></div>
+            <div class="col-md-3"><i class="bi bi-camera fs-1 text-warning"></i><h5 class="mt-2">Pro Equipment</h5><p class="text-muted small">Professional-grade gear.</p></div>
+            <div class="col-md-3"><i class="bi bi-geo-alt fs-1 text-warning"></i><h5 class="mt-2">Mydukur Based</h5><p class="text-muted small">Local service you can trust.</p></div>
+            <div class="col-md-3"><i class="bi bi-lightning fs-1 text-warning"></i><h5 class="mt-2">Fast Delivery</h5><p class="text-muted small">Quick turnaround on edits.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Ready to Capture Your Moments?</h2>
+        <p class="text-muted mb-4">Book a session today and let us create memories that last forever.</p>
+        <a href="{{ url_for('booking.index') }}" class="btn btn-warning btn-lg px-5">Book Now</a>
+    </div>
+</section>
+
+<!-- Contact Info -->
+<section class="py-4 bg-dark text-white text-center">
+    <div class="container">
+        <p class="mb-1"><i class="bi bi-telephone"></i> <a href="tel:9063939145" class="text-white text-decoration-none">9063939145</a> | <a href="tel:9492283898" class="text-white text-decoration-none">9492283898</a></p>
+        <p class="mb-1"><i class="bi bi-geo-alt"></i> Mydukur | <i class="bi bi-instagram"></i> @nani_reelz</p>
+    </div>
+</section>
+{% endblock %}

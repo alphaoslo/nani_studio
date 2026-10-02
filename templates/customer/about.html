@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+{% block title %}About — Nani Digitals{% endblock %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="fw-bold mb-4 text-center">About Nani Digitals</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h3 class="text-warning">Who We Are</h3>
+                <p class="text-muted">Nani Digitals is a professional photography and videography studio based in Mydukur. We specialize in capturing life's most precious moments with creativity and professionalism.</p>
+                <h4 class="mt-4">Our Expertise</h4>
+                <ul class="text-muted">
+                    <li>Professional photography with high-end equipment</li>
+                    <li>Cinematic videography with modern editing</li>
+                    <li>Drone shoots for aerial photography and videography</li>
+                    <li>Photo retouching, color grading, and album design</li>
+                </ul>
+                <h4 class="mt-4">Our Approach</h4>
+                <p class="text-muted">We believe every moment tells a story. Our creative approach combines professional expertise with a passion for visual storytelling, ensuring every shot is a masterpiece.</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{{ url_for('static', filename='images/hero/poster1.png') }}" class="img-fluid rounded shadow" alt="Nani Digitals Studio" style="max-height:500px;object-fit:cover;">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Manage Bookings — Nani Digitals{% endblock %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Bookings</h2>
+        <form method="GET" class="row g-2 mb-4">
+            <div class="col-md-4"><input type="text" name="search" class="form-control" placeholder="Search by name" value="{{ search }}"></div>
+            <div class="col-md-4">
+                <select name="status" class="form-select">
+                    <option value="">All Status</option>
+                    {% for s in ['Pending','Contacted','Confirmed','Completed','Cancelled'] %}
+                    <option value="{{ s }}" {% if status_filter == s %}selected{% endif %}>{{ s }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4"><button type="submit" class="btn btn-dark">Filter</button></div>
+        </form>
+        <table class="table table-hover">
+            <thead><tr><th>Name</th><th>Phone</th><th>Service</th><th>Date</th><th>Status</th><th>Update</th></tr></thead>
+            <tbody>
+                {% for b in bookings %}
+                <tr>
+                    <td>{{ b.customer_name }}</td>
+                    <td>{{ b.phone }}</td>
+                    <td>{{ b.service }}</td>
+                    <td>{{ b.event_date }}</td>
+                    <td>{{ b.status }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('admin.update_booking', id=b.id) }}" style="display:inline;">
+                            <select name="status" class="form-select form-select-sm d-inline w-auto" onchange="this.form.submit()">
+                                {% for s in ['Pending','Contacted','Confirmed','Completed','Cancelled'] %}
+                                <option value="{{ s }}" {% if b.status == s %}selected{% endif %}>{{ s }}</option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if not bookings %}<p class="text-muted">No bookings found.</p>{% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Messages — Nani Digitals{% endblock %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Messages</h2>
+        <table class="table table-hover">
+            <thead><tr><th>Name</th><th>Subject</th><th>Message</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+                {% for m in messages %}
+                <tr>
+                    <td>{{ m.name }}</td>
+                    <td>{{ m.subject }}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ m.message }}</td>
+                    <td>{{ m.status }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('admin.mark_message', id=m.id, status='Read' if m.status == 'Unread' else 'Unread') }}" style="display:inline;">
+                            <button class="btn btn-outline-secondary btn-sm">{{ 'Mark Read' if m.status == 'Unread' else 'Mark Unread' }}</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('admin.delete_message', id=m.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if not messages %}<p class="text-muted">No messages yet.</p>{% endif %}
+    </div>
+</section>
+{% endblock %}

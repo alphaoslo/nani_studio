@@ -1,0 +1,44 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Book Now — Nani Digitals{% endblock %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="fw-bold mb-4 text-center">Book a Session</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="POST" action="{{ url_for('booking.index') }}" class="card p-4 shadow-sm border-0">
+                    <div class="row g-3">
+                        <div class="col-md-6"><input type="text" name="customer_name" class="form-control" placeholder="Customer Name" required></div>
+                        <div class="col-md-6"><input type="tel" name="phone" class="form-control" placeholder="Phone Number" required></div>
+                        <div class="col-md-6"><input type="email" name="email" class="form-control" placeholder="Email" required></div>
+                        <div class="col-md-6">
+                            <select name="service" class="form-select" required>
+                                <option value="">Select Service</option>
+                                <option>Photography</option>
+                                <option>Videography</option>
+                                <option>Drone Shoot</option>
+                                <option>Photo & Video Editing</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6"><input type="date" name="event_date" class="form-control" required></div>
+                        <div class="col-md-6">
+                            <select name="event_type" class="form-select" required>
+                                <option value="">Event Type</option>
+                                <option>Wedding</option>
+                                <option>Pre-Wedding</option>
+                                <option>Birthday</option>
+                                <option>Corporate</option>
+                                <option>Portrait</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-12"><input type="text" name="location" class="form-control" placeholder="Event Location" required></div>
+                        <div class="col-12"><textarea name="message" class="form-control" rows="4" placeholder="Message (optional)"></textarea></div>
+                        <div class="col-12"><button type="submit" class="btn btn-warning w-100">Submit Booking</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

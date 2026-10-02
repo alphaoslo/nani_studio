@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Manage Portfolio — Nani Digitals{% endblock %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Portfolio</h2>
+        <button class="btn btn-warning mb-3" data-bs-toggle="collapse" data-bs-target="#addForm">Add Item</button>
+        <div class="collapse" id="addForm">
+            <form method="POST" action="{{ url_for('admin.add_portfolio') }}" enctype="multipart/form-data" class="card p-3 mb-4 border-0 shadow-sm">
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" name="title" class="form-control" placeholder="Title" required></div>
+                    <div class="col-md-6"><input type="text" name="category" class="form-control" placeholder="Category" required></div>
+                    <div class="col-12"><textarea name="description" class="form-control" placeholder="Description"></textarea></div>
+                    <div class="col-md-6"><input type="text" name="video_url" class="form-control" placeholder="Video URL (optional)"></div>
+                    <div class="col-md-6"><input type="file" name="image" class="form-control" accept="image/*"></div>
+                    <div class="col-12"><button type="submit" class="btn btn-warning">Add</button></div>
+                </div>
+            </form>
+        </div>
+        <div class="row g-3">
+            {% for item in items %}
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    {% if item.image %}<img src="{{ url_for('static', filename=item.image) }}" class="card-img-top" style="height:200px;object-fit:cover;">{% endif %}
+                    <div class="card-body">
+                        <h6>{{ item.title }}</h6>
+                        <p class="text-muted small">{{ item.category }}</p>
+                        <form method="POST" action="{{ url_for('admin.delete_portfolio', id=item.id) }}" style="display:inline;" onsubmit="return confirm('Delete?')">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if not items %}<p class="text-muted">No portfolio items yet.</p>{% endif %}
+    </div>
+</section>
+{% endblock %}
